@@ -1,9 +1,8 @@
 package org.airtribe.LearnerManagementSystem.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Learner {
@@ -15,8 +14,26 @@ public class Learner {
 
     private String learnerEmail;
 
+    @ManyToMany( mappedBy = "learners")
+    private List<Cohort> cohorts;
+
     public Learner() {
 
+    }
+
+    public void setCohorts(List<Cohort> cohorts) {
+        this.cohorts = cohorts;
+    }
+
+    public List<Cohort> getCohorts() {
+        return cohorts;
+    }
+
+    public Learner(long learnerId, String learnerName, String learnerEmail, List<Cohort> cohorts) {
+        this.learnerId = learnerId;
+        this.learnerName = learnerName;
+        this.learnerEmail = learnerEmail;
+        this.cohorts = cohorts;
     }
 
     public Learner(long learnerId, String learnerName, String learnerEmail) {
