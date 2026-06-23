@@ -1,5 +1,6 @@
 package org.airtribe.LearnerManagementSystem.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class Learner {
     private String learnerEmail;
 
     @ManyToMany( mappedBy = "learners")
+    @JsonIgnore
     private List<Cohort> cohorts;
 
     public Learner() {
